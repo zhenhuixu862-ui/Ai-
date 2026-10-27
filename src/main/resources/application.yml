@@ -1,0 +1,51 @@
+# Public demonstration configuration. Set secrets in the process environment.
+server:
+  port: ${SERVER_PORT:8090}
+
+spring:
+  application:
+    name: bear-mcp-single
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/bear_mcp?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: never
+  ai:
+    mcp:
+      server:
+        version: 0.1.0
+        protocol: STREAMABLE
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    root: INFO
+    com.bear.mcp.single: INFO
+
+bear:
+  admin:
+    jwt-secret: ${BEAR_ADMIN_JWT_SECRET}
+    jwt-expire-seconds: ${BEAR_ADMIN_JWT_EXPIRE_SECONDS:7200}
+  storage:
+    oss:
+      endpoint: ${ALIYUN_OSS_ENDPOINT:}
+      bucket-name: ${ALIYUN_OSS_BUCKET_NAME:}
+      access-key-id: ${ALIYUN_OSS_ACCESS_KEY_ID:}
+      access-key-secret: ${ALIYUN_OSS_ACCESS_KEY_SECRET:}
+      upload-expire-seconds: ${ALIYUN_OSS_UPLOAD_EXPIRE_SECONDS:600}
+
+feishu:
+  app-id: ${FEISHU_APP_ID:}
+  app-secret: ${FEISHU_APP_SECRET:}
+  token:
+    tenant-url: ${FEISHU_TENANT_TOKEN_URL:https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal}
+  mcp:
+    url: ${FEISHU_MCP_URL:https://mcp.feishu.cn/mcp}
+    credential-type: ${FEISHU_MCP_CREDENTIAL_TYPE:TAT}
