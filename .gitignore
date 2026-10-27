@@ -1,0 +1,35 @@
+# Local credentials and configuration
+.env
+.env.*
+!.env.example
+application-local.yml
+application-local.yaml
+application-secrets.yml
+*.pem
+*.key
+*.p12
+*.jks
+
+# Dependencies, caches and generated output
+target/
+node_modules/
+dist/
+build/
+.mvn/repository/
+.npm-cache/
+.vite/
+.cache/
+.venv/
+__pycache__/
+
+# IDE, system and runtime files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+*.log
+*.hprof
+logs/
+runtime-logs/
+demo-repository/
